@@ -1,0 +1,47 @@
+import json
+import sys
+
+import numpy as np
+from pybaselines import Baseline
+from scipy.signal import find_peaks, peak_widths, savgol_filter
+
+BASELINE_LAM = 1e5   
+MIN_SNR = 5.0        
+
+def load_spectrum(path):
+    rows = []
+    for line in open(path, errors="ignore"):
+        parts = line.replace(",", " ").split()
+        try:
+            rows.append((float(parts[0]), float(parts[1])))
+        except (ValueError, IndexError):
+            continue
+    data = np.array(sorted(rows))
+    return data[:, 0], data[:, 1]
+
+
+def find_raman_peaks(shift, intensity):
+    shift = np.asarray(shift, dtype=float)
+    intensity = np.asarray(intensity, dtype=float)
+    step = np.median(np.diff(shift))
+
+    baseline, _ = Baseline(x_data=shift).arpls(intensity, lam=BASELINE_LAM)
+    corrected = intensity - baseline
+
+    noise = 1.4826 * np.median(np.abs(np.diff(corrected))) / np.sqrt(2)
+    window = int(round(3 / step)) | 1          # about 3 cm^-1, odd number of points
+    smoothed = savgol_filter(corrected, window, 2) if window >= 5 else corrected
+
+    idx, _ = find_peaks(smoothed, height=MIN_SNR * noise, prominence=MIN_SNR * noise,
+                        distance=max(1, int(round(3 / step))))
+    widths = peak_widths(smoothed, idx, rel_height=0.5)[0]
+
+    peaks = [{"position_cm-1": round(float(shift[i]), 2),
+              "height": round(float(smoothed[i]), 4),
+              "fwhm_cm-1": round(float(w * step), 2)}
+             for i, w in zip(idx, widths)]
+    return {"peaks": peaks}
+
+if __name__ == "__main__":
+    shift, intensity = load_spectrum(sys.argv[1])
+    print(json.dumps(find_raman_peaks(shift, intensity)["peaks"], indent=2))

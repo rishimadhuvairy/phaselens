@@ -1,0 +1,252 @@
+import argparse
+import json
+import sys
+from pathlib import Path
+
+import numpy as np
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from peak_finder import find_raman_peaks  # noqa: E402
+
+MOS2_LAYER_TABLE = {
+    514.5: {"1L": (384.3, 403.0), "2L": (383.2, 404.8), "3L": (382.7, 405.8), "4L": (382.3, 406.7), "bulk": (382.0, 407.5)},
+    532.0: {"1L": (384.7, 402.7), "2L": (382.5, 404.9), "3L": (382.4, 405.7), "4L": (382.4, 406.7), "bulk": (383.0, 407.8)},
+    632.8: {"1L": (385.0, 403.8), "2L": (383.8, 404.8), "3L": (383.3, 405.0), "4L": (382.9, 406.0), "bulk": (381.5, 406.6)},
+    488.0: {"1L": (384.7, 402.8), "2L": (383.3, 405.5), "3L": (383.2, 406.5), "4L": (382.9, 407.4), "bulk": (383.0, 408.0)},
+}
+
+MOS2_LABELS = {
+    "odd": ("E'", "A1'"),        # 1L, 3L  -> D3h
+    "even": ("Eg", "A1g"),       # 2L, 4L  -> D3d
+    "bulk": ("E1_2g", "A1g"),    # bulk    -> D6h
+}
+
+X_MIN, X_MAX = 100.0, 1300.0   # spectrum window, cm^-1 (quartz goes up to ~1230)
+
+SILICON_LINE = 520.7   # default; replaced by the silicon mode card's value (520.2) when it loads
+
+NEON_LINES_NM = [633.443, 638.299, 640.225, 650.653, 653.288, 659.895, 667.828, 671.704, 692.947, 703.241]
+
+
+def nm_to_shift(laser_nm: float, line_nm: float) -> float:
+    return 1e7 / laser_nm - 1e7 / line_nm
+
+
+PLASMA_LINES = {
+    632.8: [round(nm_to_shift(632.816, w), 1) for w in NEON_LINES_NM],
+    # TODO (team): fill in real plasma lines for the other lasers from the instrument / literature.
+    # Until then, the generator places a placeholder line at a random position for these lasers
+    # and lists it in "context" so the model still learns to use the context.
+    514.5: None,
+    532.0: None,
+    488.0: None,
+}
+
+LASERS = list(PLASMA_LINES.keys())
+
+
+SKIP_SECTIONS = ("silent", "artifact", "instrument", "unobserved", "substrate", "plasma")
+
+
+def _walk(obj):
+    """Yield every dict inside a nested JSON object, skipping silent/artifact sections."""
+    if isinstance(obj, dict):
+        yield obj
+        for k, v in obj.items():
+            if any(word in k.lower() for word in SKIP_SECTIONS):
+                continue
+            yield from _walk(v)
+    elif isinstance(obj, list):
+        for v in obj:
+            yield from _walk(v)
+
+
+def _position(d: dict):
+    """Teammates spell the key differently ("position_cm-1" or "position_cm1"); accept both."""
+    for key in ("position_cm-1", "position_cm1", "position"):
+        if isinstance(d.get(key), (int, float)):
+            return float(d[key])
+    return None
+
+
+def load_mode_card(path: Path) -> dict | None:
+  
+    try:
+        card = json.loads(path.read_text())
+    except json.JSONDecodeError as e:
+        print(f"WARNING: {path.name} is not valid JSON ({e}); skipping it", file=sys.stderr)
+        return None
+
+    modes = []
+    for d in _walk(card):
+        pos, sym = _position(d), d.get("symmetry")
+        if pos is None or not sym:
+            continue
+        if d.get("training_eligible") is False or d.get("raman_active") is False:
+            continue
+        if str(d.get("raman_activity", "")).lower() in {"second-order", "silent", "inactive"}:
+            continue
+        if not (X_MIN + 15 <= pos <= X_MAX - 15):  # outside our spectrum window (e.g. low-frequency shear modes)
+            continue
+        if any(abs(pos - m["position"]) < 1.0 for m in modes):  # same peak listed twice
+            continue
+        modes.append({"position": float(pos), "symmetry": str(sym).split(" (")[0]})
+
+    name = str(card.get("material", path.stem))
+    return {"name": name, "file": path.name, "modes": modes}
+
+
+def load_materials(cards_dir: Path | None) -> list[dict]:
+    materials = []
+    if cards_dir and cards_dir.exists():
+        for p in sorted(cards_dir.glob("*.json")):
+            m = load_mode_card(p)
+            if not m:
+                continue
+            key = p.stem.lower()
+            if key.startswith("mos2"):
+                m["kind"] = "mos2"          # uses the layer table above
+            elif key.startswith("silicon") or key == "si":
+                m["kind"] = "silicon"       # also used as a substrate line
+            else:
+                m["kind"] = "generic"
+                if not m["modes"]:
+                    print(f"WARNING: {p.name} has no usable peak positions yet; skipping", file=sys.stderr)
+                    continue
+            materials.append(m)
+    if not any(m["kind"] == "mos2" for m in materials):
+        materials.append({"name": "MoS2", "file": "(built-in table)", "kind": "mos2", "modes": []})
+    global SILICON_LINE
+    for m in materials:
+        if m["kind"] == "silicon" and m["modes"]:
+            SILICON_LINE = m["modes"][0]["position"]
+    if not any(m["kind"] == "silicon" for m in materials):
+        materials.append({"name": "Si", "file": "(built-in)", "kind": "silicon",
+                          "modes": [{"position": SILICON_LINE, "symmetry": "T2g"}]})
+    return materials
+
+
+def lorentzian(x, center, fwhm, height):
+    return height / (1 + ((x - center) / (fwhm / 2)) ** 2)
+
+
+def make_one(material: dict, rng: np.random.Generator, laser: float | None = None) -> dict:
+    laser = laser or float(rng.choice(LASERS))
+    x = np.arange(X_MIN, X_MAX, rng.uniform(0.6, 1.4))
+    y = np.zeros_like(x)
+    truth = [] 
+
+    layer = None
+    if material["kind"] == "mos2":
+        layer = str(rng.choice(["1L", "2L", "3L", "4L", "bulk"]))
+        table = MOS2_LAYER_TABLE.get(laser, MOS2_LAYER_TABLE[532.0])
+        e_pos, a_pos = table[layer]
+        group = "bulk" if layer == "bulk" else ("odd" if layer in ("1L", "3L") else "even")
+        e_lab, a_lab = MOS2_LABELS[group]
+        sample_peaks = [(e_pos, e_lab), (a_pos, a_lab)]
+    else:
+        sample_peaks = [(m["position"], m["symmetry"]) for m in material["modes"]]
+
+    for pos, label in sample_peaks:
+        pos_obs = pos + rng.normal(0, 0.5)
+        y += lorentzian(x, pos_obs, rng.uniform(2.5, 8.0), rng.uniform(0.3, 1.0))
+        truth.append({"position": pos_obs, "label": label, "kind": "mode"})
+
+    on_silicon = material["kind"] == "mos2" and rng.random() < 0.8
+    if material["kind"] == "silicon":
+        on_silicon = False  # the sample *is* silicon; its line is a real mode, not an artifact
+    if on_silicon:
+        pos_obs = SILICON_LINE + rng.normal(0, 0.3)
+        y += lorentzian(x, pos_obs, rng.uniform(3.5, 5.0), rng.uniform(0.5, 3.0))
+        truth.append({"position": pos_obs, "label": "artifact", "kind": "substrate"})
+
+ 
+    plasma_list = PLASMA_LINES.get(laser)
+    in_window = [p for p in (plasma_list or []) if x[0] + 20 < p < x[-1] - 20]
+    if in_window:
+        plasma_pos = float(rng.choice(in_window))
+        placeholder = False
+    else:
+        plasma_pos = float(rng.uniform(x[0] + 30, x[-1] - 30))
+        placeholder = True
+    y += lorentzian(x, plasma_pos, rng.uniform(0.8, 1.6), rng.uniform(0.2, 1.0))
+    truth.append({"position": plasma_pos, "label": "artifact", "kind": "plasma"})
+
+   
+    fl_height = rng.uniform(0, 6)
+    fl_center = rng.uniform(x[0] - 300, x[-1] + 600)
+    fl_width = rng.uniform(400, 1500)
+    y += fl_height * np.exp(-0.5 * ((x - fl_center) / fl_width) ** 2) + rng.uniform(0, 0.5) * (x - x[0]) / (x[-1] - x[0])
+
+   
+    snr = rng.uniform(15, 150)
+    y += rng.normal(0, 1.0 / snr, x.size) + rng.normal(0, 0.01, x.size) * np.sqrt(np.clip(y, 0, None))
+
+    
+    found = find_raman_peaks(x, y)["peaks"]
+    answers, used = [], set()
+    for p in found:
+        best, best_d = None, 1e9
+        for j, t in enumerate(truth):
+            d = abs(p["position_cm-1"] - t["position"])
+            if d < best_d and j not in used:
+                best, best_d = j, d
+        if best is not None and best_d <= 4.0:
+            used.add(best)
+            t = truth[best]
+            answers.append({"position_cm-1": p["position_cm-1"], "label": t["label"], "source": t["kind"]})
+        else:
+            answers.append({"position_cm-1": p["position_cm-1"], "label": "unassigned", "source": "false_peak"})
+
+    return {
+        "context": {
+            "material": material["name"],
+            "mode_card": material["file"],
+            "laser_nm": laser,
+            "layer": layer,
+            "substrate": "Si/SiO2" if on_silicon else None,
+            "known_artifact_lines_cm-1": {
+                "silicon": SILICON_LINE if on_silicon else None,
+                "plasma": [round(plasma_pos, 1)] if placeholder else in_window,
+                "plasma_is_placeholder": placeholder,
+            },
+        },
+        "peaks": found,
+        "answers": answers,
+        "spectrum": {"shift_cm-1": np.round(x, 2).tolist(), "intensity": np.round(y, 5).tolist()},
+    }
+
+
+def main(argv=None) -> int:
+    ap = argparse.ArgumentParser(description="Make labelled fake Raman spectra for training.")
+    ap.add_argument("--n", type=int, default=500, help="how many spectra to make")
+    ap.add_argument("--out", default="training_data", help="output folder")
+    ap.add_argument("--cards", default="mode_cards", help="folder with the mode card JSON files")
+    ap.add_argument("--laser", type=float, default=None, help="force one laser wavelength (nm)")
+    ap.add_argument("--material", default=None, help="only this material (name or file stem)")
+    ap.add_argument("--seed", type=int, default=0, help="same seed = same files every run")
+    args = ap.parse_args(argv)
+
+    rng = np.random.default_rng(args.seed)
+    materials = load_materials(Path(args.cards))
+    if args.material:
+        materials = [m for m in materials
+                     if args.material.lower() in (m["name"].lower(), Path(m["file"]).stem.lower())]
+        if not materials:
+            print(f"No material matches {args.material!r}", file=sys.stderr)
+            return 1
+    print("Materials:", ", ".join(f'{m["name"]} [{m["file"]}]' for m in materials), file=sys.stderr)
+
+    out = Path(args.out)
+    out.mkdir(parents=True, exist_ok=True)
+    for i in range(args.n):
+        material = materials[i % len(materials)]
+        sample = make_one(material, rng, args.laser)
+        stem = f'{i:05d}_{Path(material["file"]).stem.replace("(", "").replace(")", "").replace(" ", "_")}'
+        (out / f"{stem}.json").write_text(json.dumps(sample))
+    print(f"Wrote {args.n} files to {out}/", file=sys.stderr)
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())
