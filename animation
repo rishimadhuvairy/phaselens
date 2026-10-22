@@ -1,0 +1,59 @@
+import json
+
+import numpy as np
+import matplotlib
+
+matplotlib.use("Agg")
+import matplotlib.pyplot as plt
+from matplotlib.animation import FuncAnimation, PillowWriter
+
+COLORS = {"Si": "#e0b04a", "O": "#e0453a", "Mo": "#7a5cc7", "S": "#e8d23c",
+          "Ca": "#4fae5a", "C": "#555555", "Ti": "#9aa4ad"}
+
+
+def make_mode_gif(lattice, frac_coords, species, displacement, out_path, title="",
+                  reps=(2, 2, 2), view=(0, 1), amplitude=0.6, frames=24, bond_cutoff=2.6):
+    lattice = np.asarray(lattice, float)
+    frac = np.mod(np.asarray(frac_coords, float) - frac_coords[0], 1.0)
+    disp = np.asarray(displacement, float)
+    disp = disp / np.abs(disp).max() * amplitude  # exaggerate so the motion is visible
+
+    # repeat the unit cell so it looks like a block of crystal
+    shifts = [np.array([i, j, k]) for i in range(reps[0]) for j in range(reps[1]) for k in range(reps[2])]
+    pos = np.vstack([(frac + s) @ lattice for s in shifts])
+    disp = np.vstack([disp] * len(shifts))
+    colors = [COLORS.get(s, "#4a90d9") for s in list(species) * len(shifts)]
+
+    dist = np.linalg.norm(pos[:, None] - pos[None, :], axis=-1)
+    bonds = [(i, j) for i in range(len(pos)) for j in range(i + 1, len(pos)) if dist[i, j] < bond_cutoff]
+
+    a, b = view
+    fig, ax = plt.subplots(figsize=(4, 4))
+    ax.set_aspect("equal")
+    ax.axis("off")
+    ax.set_title(title)
+    ax.set_xlim(pos[:, a].min() - 1.5, pos[:, a].max() + 1.5)
+    ax.set_ylim(pos[:, b].min() - 1.5, pos[:, b].max() + 1.5)
+    lines = [ax.plot([], [], color="grey")[0] for _ in bonds]
+    dots = ax.scatter(pos[:, a], pos[:, b], s=180, c=colors, edgecolors="black", zorder=2)
+
+    def draw(f):
+        p = pos + np.sin(2 * np.pi * f / frames) * disp
+        dots.set_offsets(p[:, [a, b]])
+        for line, (i, j) in zip(lines, bonds):
+            line.set_data([p[i, a], p[j, a]], [p[i, b], p[j, b]])
+        return [dots, *lines]
+
+    FuncAnimation(fig, draw, frames=frames).save(out_path, writer=PillowWriter(fps=12))
+    plt.close(fig)
+    return out_path
+
+
+def gif_from_phaselens_export(export_path, out_path, mode_index=0, **kwargs):
+    """Read Ryan's export (data/generated/*_raman_modes.json) and make the GIF."""
+    data = json.load(open(export_path))
+    st, mode = data["structure"], data["modes"][mode_index]
+    disp = mode["animation"]["frames"][0]["displacements_angstrom"]
+    title = f'{mode["symmetry"]}  {mode["frequency_cm-1"]:.0f} cm$^{{-1}}$'
+    return make_mode_gif(st["lattice_angstrom"], st["fractional_coordinates"], st["species"],
+                         disp, out_path, title=title, **kwargs)
