@@ -1,0 +1,840 @@
+{
+  "schema_version": "2.1",
+  "material": "calcite (CaCO3)",
+  "point_group": "D3d",
+  "symmetry_validation": {
+    "method": "spglib 2.8.0 on the COD crystal structure; phonon irreps from factor-group analysis (literature-backed, not inferred by spglib)",
+    "structure": {
+      "space_group": "R-3c",
+      "space_group_number": 167,
+      "point_group": "-3m",
+      "spglib_verified": true,
+      "cif": "structures/calcite.cif",
+      "cod_id": "9000965"
+    },
+    "literature_symmetry_table": {
+      "doi": null,
+      "source": "factor-group analysis (Rousseau, Bauman & Porto 1981, J. Raman Spectrosc. 10, 253)",
+      "raman_active": [
+        "A1g",
+        "Eg"
+      ],
+      "silent_modes": [
+        "A2g",
+        "A1u"
+      ],
+      "ir_only_modes": [
+        "A2u",
+        "Eu"
+      ],
+      "notes": "Gamma(optical) = A1g + 4Eg (Raman) + 3A2u + 5Eu (IR only) + 3A2g + 2A1u (inactive), D3d, Z = 2"
+    }
+  },
+  "curated_expected_modes": [
+    {
+      "phase": "calcite",
+      "mode": "Eg(T)",
+      "symmetry": "Eg",
+      "position_cm-1": 154,
+      "position_uncertainty_cm-1": 1,
+      "width_cm-1": 6.2,
+      "paper_label": "T",
+      "motion": "external lattice mode: translation of CO3 groups against the Ca ions",
+      "source_verified": true,
+      "training_eligible": true,
+      "provenance": {
+        "doi": null,
+        "url": "http://www.minsocam.org/ammin/AM70/AM70_581.pdf",
+        "paper_id": "CAL003",
+        "page": 584,
+        "figure_or_table": "Table 1 (p.584), row 'Calcite' (pure synthetic calcite)"
+      },
+      "literature_summary": {
+        "n_peaks": 158,
+        "n_papers": 53,
+        "median_cm-1": 155.5,
+        "p10_cm-1": 152.8,
+        "p90_cm-1": 162.9,
+        "min_cm-1": 143.6,
+        "max_cm-1": 175.4
+      }
+    },
+    {
+      "phase": "calcite",
+      "mode": "Eg(L)",
+      "symmetry": "Eg",
+      "position_cm-1": 281,
+      "position_uncertainty_cm-1": 1,
+      "width_cm-1": 10.1,
+      "paper_label": "L",
+      "motion": "external lattice mode: libration (rocking) of the CO3 groups",
+      "source_verified": true,
+      "training_eligible": true,
+      "provenance": {
+        "doi": null,
+        "url": "http://www.minsocam.org/ammin/AM70/AM70_581.pdf",
+        "paper_id": "CAL003",
+        "page": 584,
+        "figure_or_table": "Table 1 (p.584), row 'Calcite' (pure synthetic calcite)"
+      },
+      "literature_summary": {
+        "n_peaks": 235,
+        "n_papers": 63,
+        "median_cm-1": 281.0,
+        "p10_cm-1": 277.4,
+        "p90_cm-1": 286.4,
+        "min_cm-1": 262.0,
+        "max_cm-1": 300.9
+      }
+    },
+    {
+      "phase": "calcite",
+      "mode": "nu4",
+      "symmetry": "Eg",
+      "position_cm-1": 711,
+      "position_uncertainty_cm-1": 1,
+      "width_cm-1": 3.6,
+      "paper_label": "v4",
+      "motion": "in-plane O-C-O bending of the carbonate ion",
+      "source_verified": true,
+      "training_eligible": true,
+      "provenance": {
+        "doi": null,
+        "url": "http://www.minsocam.org/ammin/AM70/AM70_581.pdf",
+        "paper_id": "CAL003",
+        "page": 584,
+        "figure_or_table": "Table 1 (p.584), row 'Calcite' (pure synthetic calcite)"
+      },
+      "literature_summary": {
+        "n_peaks": 234,
+        "n_papers": 65,
+        "median_cm-1": 712.5,
+        "p10_cm-1": 711.0,
+        "p90_cm-1": 716.0,
+        "min_cm-1": 705.0,
+        "max_cm-1": 724.0
+      }
+    },
+    {
+      "phase": "calcite",
+      "mode": "nu1",
+      "symmetry": "A1g",
+      "position_cm-1": 1085,
+      "position_uncertainty_cm-1": 1,
+      "width_cm-1": 2.5,
+      "paper_label": "v1",
+      "motion": "symmetric C-O stretching of the carbonate ion; the strongest band",
+      "source_verified": true,
+      "training_eligible": true,
+      "provenance": {
+        "doi": null,
+        "url": "http://www.minsocam.org/ammin/AM70/AM70_581.pdf",
+        "paper_id": "CAL003",
+        "page": 584,
+        "figure_or_table": "Table 1 (p.584), row 'Calcite' (pure synthetic calcite)"
+      },
+      "literature_summary": {
+        "n_peaks": 281,
+        "n_papers": 65,
+        "median_cm-1": 1086.4,
+        "p10_cm-1": 1084.0,
+        "p90_cm-1": 1089.2,
+        "min_cm-1": 1080.3,
+        "max_cm-1": 1098.8
+      }
+    },
+    {
+      "phase": "calcite",
+      "mode": "nu3",
+      "symmetry": "Eg",
+      "position_cm-1": 1434,
+      "position_uncertainty_cm-1": 1,
+      "width_cm-1": 2.0,
+      "paper_label": "v3",
+      "motion": "antisymmetric C-O stretching of the carbonate ion",
+      "source_verified": true,
+      "training_eligible": true,
+      "provenance": {
+        "doi": null,
+        "url": "http://www.minsocam.org/ammin/AM70/AM70_581.pdf",
+        "paper_id": "CAL003",
+        "page": 584,
+        "figure_or_table": "Table 1 (p.584), row 'Calcite' (pure synthetic calcite)"
+      },
+      "literature_summary": {
+        "n_peaks": 93,
+        "n_papers": 24,
+        "median_cm-1": 1436.9,
+        "p10_cm-1": 1433.8,
+        "p90_cm-1": 1441.0,
+        "min_cm-1": 1424.6,
+        "max_cm-1": 1446.3
+      }
+    },
+    {
+      "phase": "calcite",
+      "mode": "2nu2",
+      "symmetry": "overtone (A1g component of 2 x A2u)",
+      "position_cm-1": 1748,
+      "position_uncertainty_cm-1": 1,
+      "width_cm-1": 3.6,
+      "paper_label": "2 x v2",
+      "motion": "overtone of the out-of-plane carbonate bend nu2; second order, weak",
+      "source_verified": true,
+      "training_eligible": true,
+      "provenance": {
+        "doi": null,
+        "url": "http://www.minsocam.org/ammin/AM70/AM70_581.pdf",
+        "paper_id": "CAL003",
+        "page": 584,
+        "figure_or_table": "Table 1 (p.584), row 'Calcite' (pure synthetic calcite)"
+      },
+      "literature_summary": {
+        "n_peaks": 83,
+        "n_papers": 19,
+        "median_cm-1": 1750.0,
+        "p10_cm-1": 1747.0,
+        "p90_cm-1": 1755.1,
+        "min_cm-1": 1737.3,
+        "max_cm-1": 1759.0
+      }
+    }
+  ],
+  "artifact_lines": {
+    "substrate_raman": [
+      {
+        "material": "Si-I",
+        "position_cm-1": 520.2,
+        "symmetry": "F2g",
+        "role": "substrate/reference",
+        "provenance": {
+          "doi": "10.1103/PhysRev.155.712",
+          "page": 712,
+          "figure_or_table": "abstract (see the team silicon card, repo-root mode_cards/silicon.json)"
+        }
+      }
+    ],
+    "laser_dependent_plasma_or_stray_light": [
+      {
+        "laser_wavelength_nm": 487.986,
+        "position_cm-1": 104.0,
+        "instrument": "Ar+ 488.0 nm laser (Ar II line 490.475 nm)",
+        "source_verified": true,
+        "training_eligible": false,
+        "provenance": {
+          "source": "NIST Atomic Spectra Database",
+          "file": "data/reference/nist_asd/"
+        }
+      },
+      {
+        "laser_wavelength_nm": 487.986,
+        "position_cm-1": 221.6,
+        "instrument": "Ar+ 488.0 nm laser (Ar II line 493.321 nm)",
+        "source_verified": true,
+        "training_eligible": false,
+        "provenance": {
+          "source": "NIST Atomic Spectra Database",
+          "file": "data/reference/nist_asd/"
+        }
+      },
+      {
+        "laser_wavelength_nm": 487.986,
+        "position_cm-1": 351.7,
+        "instrument": "Ar+ 488.0 nm laser (Ar II line 496.508 nm)",
+        "source_verified": true,
+        "training_eligible": false,
+        "provenance": {
+          "source": "NIST Atomic Spectra Database",
+          "file": "data/reference/nist_asd/"
+        }
+      },
+      {
+        "laser_wavelength_nm": 487.986,
+        "position_cm-1": 529.7,
+        "instrument": "Ar+ 488.0 nm laser (Ar II line 500.933 nm)",
+        "source_verified": true,
+        "training_eligible": false,
+        "provenance": {
+          "source": "NIST Atomic Spectra Database",
+          "file": "data/reference/nist_asd/"
+        }
+      },
+      {
+        "laser_wavelength_nm": 487.986,
+        "position_cm-1": 560.8,
+        "instrument": "Ar+ 488.0 nm laser (Ar II line 501.716 nm)",
+        "source_verified": true,
+        "training_eligible": false,
+        "provenance": {
+          "source": "NIST Atomic Spectra Database",
+          "file": "data/reference/nist_asd/"
+        }
+      },
+      {
+        "laser_wavelength_nm": 487.986,
+        "position_cm-1": 737.5,
+        "instrument": "Ar+ 488.0 nm laser (Ar II line 506.204 nm)",
+        "source_verified": true,
+        "training_eligible": false,
+        "provenance": {
+          "source": "NIST Atomic Spectra Database",
+          "file": "data/reference/nist_asd/"
+        }
+      },
+      {
+        "laser_wavelength_nm": 487.986,
+        "position_cm-1": 1043.9,
+        "instrument": "Ar+ 488.0 nm laser (Ar II line 514.178 nm)",
+        "source_verified": true,
+        "training_eligible": false,
+        "provenance": {
+          "source": "NIST Atomic Spectra Database",
+          "file": "data/reference/nist_asd/"
+        }
+      },
+      {
+        "laser_wavelength_nm": 487.986,
+        "position_cm-1": 1057.2,
+        "instrument": "Ar+ 488.0 nm laser (Ar II line 514.531 nm)",
+        "source_verified": true,
+        "training_eligible": false,
+        "provenance": {
+          "source": "NIST Atomic Spectra Database",
+          "file": "data/reference/nist_asd/"
+        }
+      }
+    ]
+  },
+  "modes": [
+    {
+      "mode": "Eg(T)",
+      "symmetry": "Eg",
+      "raman_activity": "active",
+      "training_eligible": true
+    },
+    {
+      "mode": "Eg(L)",
+      "symmetry": "Eg",
+      "raman_activity": "active",
+      "training_eligible": true
+    },
+    {
+      "mode": "nu4",
+      "symmetry": "Eg",
+      "raman_activity": "active",
+      "training_eligible": true
+    },
+    {
+      "mode": "nu1",
+      "symmetry": "A1g",
+      "raman_activity": "active",
+      "training_eligible": true
+    },
+    {
+      "mode": "nu3",
+      "symmetry": "Eg",
+      "raman_activity": "active",
+      "training_eligible": true
+    },
+    {
+      "mode": "2nu2",
+      "symmetry": "overtone (A1g component of 2 x A2u)",
+      "raman_activity": "second-order",
+      "training_eligible": true
+    }
+  ],
+  "studies": [
+    {
+      "paper_id": "CAL003",
+      "doi": null,
+      "citation": "William D. Bischoff et al., American Mineralogist (1985). Carbonate ion disorder in synthetic and biogenic magnesian calcites: a Raman spectral study",
+      "source": "http://www.minsocam.org/ammin/AM70/AM70_581.pdf",
+      "source_verified": true,
+      "sample": {
+        "phase": "calcite",
+        "orientation": null,
+        "confounders": [
+          "Mg substitution",
+          "biogenic"
+        ]
+      },
+      "conditions": {
+        "laser_wavelength_nm": 488,
+        "laser_power_mw": null,
+        "temperature": null,
+        "room_temperature_confirmed": null,
+        "wavenumber_calibration": null,
+        "instrument_resolution_cm-1": null,
+        "substrate": null
+      },
+      "spectra": [
+        {
+          "sample_id": "Calcite",
+          "sample_description": "calcite end member, powder in glass capillary",
+          "peaks": [
+            {
+              "position_cm-1": 154,
+              "position_uncertainty_cm-1": 1,
+              "height": null,
+              "height_units": null,
+              "fwhm_cm-1": 6.2,
+              "mode": "Eg(T)",
+              "symmetry": "Eg",
+              "raman_activity": "active",
+              "phase": "calcite",
+              "training_eligible": true,
+              "value_type": "reported",
+              "assignment_source": "paper",
+              "provenance": {
+                "page": 584,
+                "figure_or_table": "Table 1 (p.584)"
+              }
+            },
+            {
+              "position_cm-1": 281,
+              "position_uncertainty_cm-1": 1,
+              "height": null,
+              "height_units": null,
+              "fwhm_cm-1": 10.1,
+              "mode": "Eg(L)",
+              "symmetry": "Eg",
+              "raman_activity": "active",
+              "phase": "calcite",
+              "training_eligible": true,
+              "value_type": "reported",
+              "assignment_source": "paper",
+              "provenance": {
+                "page": 584,
+                "figure_or_table": "Table 1 (p.584)"
+              }
+            },
+            {
+              "position_cm-1": 711,
+              "position_uncertainty_cm-1": 1,
+              "height": null,
+              "height_units": null,
+              "fwhm_cm-1": 3.6,
+              "mode": "nu4",
+              "symmetry": "Eg",
+              "raman_activity": "active",
+              "phase": "calcite",
+              "training_eligible": true,
+              "value_type": "reported",
+              "assignment_source": "paper",
+              "provenance": {
+                "page": 584,
+                "figure_or_table": "Table 1 (p.584)"
+              }
+            },
+            {
+              "position_cm-1": 1085,
+              "position_uncertainty_cm-1": 1,
+              "height": null,
+              "height_units": null,
+              "fwhm_cm-1": 2.5,
+              "mode": "nu1",
+              "symmetry": "A1g",
+              "raman_activity": "active",
+              "phase": "calcite",
+              "training_eligible": true,
+              "value_type": "reported",
+              "assignment_source": "paper",
+              "provenance": {
+                "page": 584,
+                "figure_or_table": "Table 1 (p.584)"
+              }
+            },
+            {
+              "position_cm-1": 1434,
+              "position_uncertainty_cm-1": 1,
+              "height": null,
+              "height_units": null,
+              "fwhm_cm-1": 2.0,
+              "mode": "nu3",
+              "symmetry": "Eg",
+              "raman_activity": "active",
+              "phase": "calcite",
+              "training_eligible": true,
+              "value_type": "reported",
+              "assignment_source": "paper",
+              "provenance": {
+                "page": 584,
+                "figure_or_table": "Table 1 (p.584)"
+              }
+            },
+            {
+              "position_cm-1": 1748,
+              "position_uncertainty_cm-1": 1,
+              "height": null,
+              "height_units": null,
+              "fwhm_cm-1": 3.6,
+              "mode": "2nu2",
+              "symmetry": "overtone",
+              "raman_activity": "second-order",
+              "phase": "calcite",
+              "training_eligible": true,
+              "value_type": "reported",
+              "assignment_source": "paper",
+              "provenance": {
+                "page": 584,
+                "figure_or_table": "Table 1 (p.584)"
+              }
+            }
+          ]
+        }
+      ],
+      "training_eligible": true
+    },
+    {
+      "paper_id": "CAL010",
+      "doi": "10.1063/1.4871900",
+      "citation": "Marco De La Pierre et al., The Journal of Chemical Physics (2014). The Raman spectrum of CaCO3 polymorphs calcite and aragonite: A combined experimental and computational study",
+      "source": "https://doi.org/10.1063/1.4871900",
+      "source_verified": true,
+      "sample": {
+        "phase": "calcite",
+        "orientation": null,
+        "confounders": [
+          "temperature"
+        ]
+      },
+      "conditions": {
+        "laser_wavelength_nm": null,
+        "laser_power_mw": null,
+        "temperature": null,
+        "room_temperature_confirmed": null,
+        "wavenumber_calibration": null,
+        "instrument_resolution_cm-1": null,
+        "substrate": null
+      },
+      "spectra": [
+        {
+          "sample_id": "xtal_300K",
+          "sample_description": "single crystal calcite, polarized Raman (experimental columns of calc-vs-exp tables)",
+          "peaks": [
+            {
+              "position_cm-1": 155.4,
+              "position_uncertainty_cm-1": null,
+              "height": null,
+              "height_units": null,
+              "fwhm_cm-1": 6.0,
+              "mode": "Eg(T)",
+              "symmetry": "Eg",
+              "raman_activity": "active",
+              "phase": "calcite",
+              "training_eligible": true,
+              "value_type": "reported",
+              "assignment_source": "paper",
+              "provenance": {
+                "page": 2,
+                "figure_or_table": "SI Table S1 (p.2)"
+              }
+            },
+            {
+              "position_cm-1": 282.0,
+              "position_uncertainty_cm-1": null,
+              "height": null,
+              "height_units": null,
+              "fwhm_cm-1": 9.3,
+              "mode": "Eg(L)",
+              "symmetry": "Eg",
+              "raman_activity": "active",
+              "phase": "calcite",
+              "training_eligible": true,
+              "value_type": "reported",
+              "assignment_source": "paper",
+              "provenance": {
+                "page": 2,
+                "figure_or_table": "SI Table S1 (p.2)"
+              }
+            },
+            {
+              "position_cm-1": 712.5,
+              "position_uncertainty_cm-1": null,
+              "height": null,
+              "height_units": null,
+              "fwhm_cm-1": 2.9,
+              "mode": "nu4",
+              "symmetry": "Eg",
+              "raman_activity": "active",
+              "phase": "calcite",
+              "training_eligible": true,
+              "value_type": "reported",
+              "assignment_source": "paper",
+              "provenance": {
+                "page": 2,
+                "figure_or_table": "SI Table S1 (p.2)"
+              }
+            },
+            {
+              "position_cm-1": 1066.8,
+              "position_uncertainty_cm-1": null,
+              "height": null,
+              "height_units": null,
+              "fwhm_cm-1": 1.7,
+              "mode": "nu1(13C)",
+              "symmetry": "A1g",
+              "raman_activity": "active",
+              "phase": "calcite",
+              "training_eligible": true,
+              "value_type": "reported",
+              "assignment_source": "reference",
+              "provenance": {
+                "page": 2,
+                "figure_or_table": "SI Table S1 (p.2)"
+              }
+            },
+            {
+              "position_cm-1": 1086.5,
+              "position_uncertainty_cm-1": null,
+              "height": null,
+              "height_units": null,
+              "fwhm_cm-1": 1.8,
+              "mode": "nu1",
+              "symmetry": "A1g",
+              "raman_activity": "active",
+              "phase": "calcite",
+              "training_eligible": true,
+              "value_type": "reported",
+              "assignment_source": "paper",
+              "provenance": {
+                "page": 2,
+                "figure_or_table": "SI Table S1 (p.2)"
+              }
+            },
+            {
+              "position_cm-1": 1436.5,
+              "position_uncertainty_cm-1": null,
+              "height": null,
+              "height_units": null,
+              "fwhm_cm-1": 3.8,
+              "mode": "nu3",
+              "symmetry": "Eg",
+              "raman_activity": "active",
+              "phase": "calcite",
+              "training_eligible": true,
+              "value_type": "reported",
+              "assignment_source": "paper",
+              "provenance": {
+                "page": 2,
+                "figure_or_table": "SI Table S1 (p.2)"
+              }
+            },
+            {
+              "position_cm-1": 1749.2,
+              "position_uncertainty_cm-1": null,
+              "height": null,
+              "height_units": null,
+              "fwhm_cm-1": 6.6,
+              "mode": "2nu2",
+              "symmetry": "overtone",
+              "raman_activity": "second-order",
+              "phase": "calcite",
+              "training_eligible": true,
+              "value_type": "reported",
+              "assignment_source": "reference",
+              "provenance": {
+                "page": 2,
+                "figure_or_table": "SI Table S1 (p.2)"
+              }
+            }
+          ]
+        }
+      ],
+      "training_eligible": true
+    },
+    {
+      "paper_id": "CAL030",
+      "doi": "10.1177/00037028251330654",
+      "citation": "Dirk Lellinger et al., Applied Spectroscopy (2025). Interlaboratory Study to Minimize Wavelength Calibration Uncertainty Due to Peak Fitting of Reference Material Spectra in Raman Spectroscopy",
+      "source": "https://doi.org/10.1177/00037028251330654",
+      "source_verified": true,
+      "sample": {
+        "phase": "calcite",
+        "orientation": null,
+        "confounders": []
+      },
+      "conditions": {
+        "laser_wavelength_nm": 785,
+        "laser_power_mw": null,
+        "temperature": null,
+        "room_temperature_confirmed": null,
+        "wavenumber_calibration": null,
+        "instrument_resolution_cm-1": null,
+        "substrate": null
+      },
+      "spectra": [
+        {
+          "sample_id": "S10",
+          "sample_description": "certified calcite reference material (ELODIZ, sCal) on system S10785: Renishaw inVia Reflex, moving grating",
+          "peaks": [
+            {
+              "position_cm-1": 155.04,
+              "position_uncertainty_cm-1": 0.01,
+              "height": 0.098,
+              "height_units": "relative to strongest mode of this spectrum",
+              "fwhm_cm-1": 7.64,
+              "mode": "Eg(T)",
+              "symmetry": "Eg",
+              "raman_activity": "active",
+              "phase": "calcite",
+              "training_eligible": true,
+              "value_type": "fitted_from_deposited_spectrum",
+              "assignment_source": "reference",
+              "provenance": {
+                "page": null,
+                "figure_or_table": "Zenodo 10.5281/zenodo.13387413 peak_fitting_spectra.nxs, entry 'Figure5and6 (Calcite) S10'"
+              }
+            },
+            {
+              "position_cm-1": 281.86,
+              "position_uncertainty_cm-1": 0.02,
+              "height": 0.262,
+              "height_units": "relative to strongest mode of this spectrum",
+              "fwhm_cm-1": 9.93,
+              "mode": "Eg(L)",
+              "symmetry": "Eg",
+              "raman_activity": "active",
+              "phase": "calcite",
+              "training_eligible": true,
+              "value_type": "fitted_from_deposited_spectrum",
+              "assignment_source": "reference",
+              "provenance": {
+                "page": null,
+                "figure_or_table": "Zenodo 10.5281/zenodo.13387413 peak_fitting_spectra.nxs, entry 'Figure5and6 (Calcite) S10'"
+              }
+            },
+            {
+              "position_cm-1": 712.75,
+              "position_uncertainty_cm-1": 0.01,
+              "height": 0.1,
+              "height_units": "relative to strongest mode of this spectrum",
+              "fwhm_cm-1": 5.07,
+              "mode": "nu4",
+              "symmetry": "Eg",
+              "raman_activity": "active",
+              "phase": "calcite",
+              "training_eligible": true,
+              "value_type": "fitted_from_deposited_spectrum",
+              "assignment_source": "reference",
+              "provenance": {
+                "page": null,
+                "figure_or_table": "Zenodo 10.5281/zenodo.13387413 peak_fitting_spectra.nxs, entry 'Figure5and6 (Calcite) S10'"
+              }
+            },
+            {
+              "position_cm-1": 1067.42,
+              "position_uncertainty_cm-1": 0.49,
+              "height": 0.006,
+              "height_units": "relative to strongest mode of this spectrum",
+              "fwhm_cm-1": 4.06,
+              "mode": "nu1(13C)",
+              "symmetry": "A1g",
+              "raman_activity": "active",
+              "phase": "calcite",
+              "training_eligible": true,
+              "value_type": "fitted_from_deposited_spectrum",
+              "assignment_source": "reference",
+              "provenance": {
+                "page": null,
+                "figure_or_table": "Zenodo 10.5281/zenodo.13387413 peak_fitting_spectra.nxs, entry 'Figure5and6 (Calcite) S10'"
+              }
+            },
+            {
+              "position_cm-1": 1087.16,
+              "position_uncertainty_cm-1": 0.0,
+              "height": 1.0,
+              "height_units": "relative to strongest mode of this spectrum",
+              "fwhm_cm-1": 4.13,
+              "mode": "nu1",
+              "symmetry": "A1g",
+              "raman_activity": "active",
+              "phase": "calcite",
+              "training_eligible": true,
+              "value_type": "fitted_from_deposited_spectrum",
+              "assignment_source": "reference",
+              "provenance": {
+                "page": null,
+                "figure_or_table": "Zenodo 10.5281/zenodo.13387413 peak_fitting_spectra.nxs, entry 'Figure5and6 (Calcite) S10'"
+              }
+            },
+            {
+              "position_cm-1": 1437.27,
+              "position_uncertainty_cm-1": 0.05,
+              "height": 0.017,
+              "height_units": "relative to strongest mode of this spectrum",
+              "fwhm_cm-1": 5.31,
+              "mode": "nu3",
+              "symmetry": "Eg",
+              "raman_activity": "active",
+              "phase": "calcite",
+              "training_eligible": true,
+              "value_type": "fitted_from_deposited_spectrum",
+              "assignment_source": "reference",
+              "provenance": {
+                "page": null,
+                "figure_or_table": "Zenodo 10.5281/zenodo.13387413 peak_fitting_spectra.nxs, entry 'Figure5and6 (Calcite) S10'"
+              }
+            },
+            {
+              "position_cm-1": 1750.91,
+              "position_uncertainty_cm-1": 0.1,
+              "height": 0.01,
+              "height_units": "relative to strongest mode of this spectrum",
+              "fwhm_cm-1": 7.69,
+              "mode": "2nu2",
+              "symmetry": "overtone",
+              "raman_activity": "second-order",
+              "phase": "calcite",
+              "training_eligible": true,
+              "value_type": "fitted_from_deposited_spectrum",
+              "assignment_source": "reference",
+              "provenance": {
+                "page": null,
+                "figure_or_table": "Zenodo 10.5281/zenodo.13387413 peak_fitting_spectra.nxs, entry 'Figure5and6 (Calcite) S10'"
+              }
+            }
+          ]
+        }
+      ],
+      "training_eligible": true
+    }
+  ],
+  "cross_paper_summary": {
+    "agreement": [
+      "2nu2: 83 peaks from 19 papers, median 1750.0 cm-1 (10-90% range 1747.0-1755.1)",
+      "Eg(L): 235 peaks from 63 papers, median 281.0 cm-1 (10-90% range 277.4-286.4)",
+      "Eg(T): 158 peaks from 53 papers, median 155.5 cm-1 (10-90% range 152.8-162.9)",
+      "nu1: 281 peaks from 65 papers, median 1086.4 cm-1 (10-90% range 1084.0-1089.2)",
+      "nu1(13C): 9 peaks from 4 papers, median 1066.8 cm-1 (10-90% range 1064.1-1067.7)",
+      "nu1(18O): 1 peaks from 1 papers, median 1065.0 cm-1 (10-90% range 1065.0-1065.0)",
+      "nu3: 93 peaks from 24 papers, median 1436.9 cm-1 (10-90% range 1433.8-1441.0)",
+      "nu4: 234 peaks from 65 papers, median 712.5 cm-1 (10-90% range 711.0-716.0)"
+    ],
+    "conflicts": [
+      "CAL029 prints 262 cm-1 for Eg(L) in the text; its figure shows 282 (likely typo; both rows kept, flagged).",
+      "CAL049 room-temperature rows sit 7-12 cm-1 above the matching 5% CO2 rows (flagged in notes).",
+      "CAL018, CAL030 (S4, S9), CAL031 (S17) deposited spectra carry calibration offsets of 1-6 cm-1 (noted per row).",
+      "CAL005's 9.9 mol% Mg-calcite repeats CAL003 sample 17A; CAL035 repeats CAL008 (same labs)."
+    ],
+    "missing": [
+      "Papers CAL068-CAL100 were not collected (stopped at 67 papers).",
+      "Open-access temperature series and polarized single-crystal studies are scarce (most are paywalled).",
+      "Round-2 papers (CAL034-CAL067) have extractor self-checks but no independent review sample yet."
+    ]
+  },
+  "confounders": [
+    "Mg substitution (all bands shift up)",
+    "pressure (calcite-II/III above ~1.5 GPa)",
+    "temperature",
+    "polymorph mixtures (aragonite, vaterite) and dolomite",
+    "biogenic organic matrix / fluorescence",
+    "carbon and oxygen isotopes",
+    "spectrometer calibration offsets"
+  ],
+  "dataset_notes": [
+    "Simplified card: 3 representative studies. The full card with every paper (67 studies) is Qiaomu/mode_cards_comprehensive/calcite.json.",
+    "literature_summary in each curated mode is computed over all papers in the full card.",
+    "curated_expected_modes come from one primary paper (Bischoff, W. D., Sharma, S. K., Mackenzie, F. T. (1985) Carbonate ion disorder in synthetic and biogenic magnesian calcites: a Raman spectral study. American Mineralogist 70, 581-589.), checked number by number (Qiaomu/data/mode_card_sources/CHECK.md); human teammate sign-off pending."
+  ]
+}

@@ -1,0 +1,447 @@
+{
+  "schema_version": "2.1",
+  "material": "anatase (TiO2)",
+  "point_group": "D4h",
+  "symmetry_validation": {
+    "method": "spglib 2.8.0 on the COD crystal structure; phonon irreps from factor-group analysis (literature-backed, not inferred by spglib)",
+    "structure": {
+      "space_group": "I4_1/amd",
+      "space_group_number": 141,
+      "point_group": "4/mmm",
+      "spglib_verified": true,
+      "cif": "Qiaomu/structures/anatase.cif",
+      "cod_id": "9015929"
+    },
+    "literature_symmetry_table": {
+      "doi": null,
+      "source": "factor-group analysis (Rousseau, Bauman & Porto 1981, J. Raman Spectrosc. 10, 253)",
+      "raman_active": [
+        "A1g",
+        "B1g",
+        "Eg"
+      ],
+      "silent_modes": [
+        "B2u"
+      ],
+      "ir_only_modes": [
+        "A2u",
+        "Eu"
+      ],
+      "notes": "Gamma(optical) = A1g + 2B1g + 3Eg (Raman) + A2u + 2Eu (IR only) + B2u (inactive), D4h, primitive cell 2 TiO2"
+    }
+  },
+  "curated_expected_modes": [
+    {
+      "phase": "anatase",
+      "mode": "Eg(1)",
+      "symmetry": "Eg",
+      "position_cm-1": 145,
+      "position_uncertainty_cm-1": null,
+      "width_cm-1": 5,
+      "paper_label": "Eg (nu6)",
+      "motion": "O-Ti-O bending / external mode, O and Ti moving in the a-b plane; the strongest band",
+      "source_verified": true,
+      "training_eligible": true,
+      "provenance": {
+        "doi": "10.1103/PhysRevB.86.205201",
+        "url": null,
+        "paper_id": "ANA069",
+        "page": 3,
+        "figure_or_table": "Table I, spontaneous Raman columns (PDF p.3); natural anatase single crystal"
+      },
+      "literature_summary": {
+        "n_peaks": 509,
+        "n_papers": 95,
+        "median_cm-1": 144.9,
+        "p10_cm-1": 141.8,
+        "p90_cm-1": 151.0,
+        "min_cm-1": 132.0,
+        "max_cm-1": 159.3
+      }
+    },
+    {
+      "phase": "anatase",
+      "mode": "Eg(2)",
+      "symmetry": "Eg",
+      "position_cm-1": 199,
+      "position_uncertainty_cm-1": null,
+      "width_cm-1": 2,
+      "paper_label": "Eg (nu5)",
+      "motion": "O-Ti-O bending in the a-b plane; weak",
+      "source_verified": true,
+      "training_eligible": true,
+      "provenance": {
+        "doi": "10.1103/PhysRevB.86.205201",
+        "url": null,
+        "paper_id": "ANA069",
+        "page": 3,
+        "figure_or_table": "Table I, spontaneous Raman columns (PDF p.3); natural anatase single crystal"
+      },
+      "literature_summary": {
+        "n_peaks": 124,
+        "n_papers": 63,
+        "median_cm-1": 197.0,
+        "p10_cm-1": 194.4,
+        "p90_cm-1": 200.9,
+        "min_cm-1": 185.0,
+        "max_cm-1": 209.0
+      }
+    },
+    {
+      "phase": "anatase",
+      "mode": "B1g(1)",
+      "symmetry": "B1g",
+      "position_cm-1": 396,
+      "position_uncertainty_cm-1": null,
+      "width_cm-1": 10,
+      "paper_label": "B1g (nu4)",
+      "motion": "O-Ti-O symmetric bending, O atoms moving along c in opposite directions",
+      "source_verified": true,
+      "training_eligible": true,
+      "provenance": {
+        "doi": "10.1103/PhysRevB.86.205201",
+        "url": null,
+        "paper_id": "ANA069",
+        "page": 3,
+        "figure_or_table": "Table I, spontaneous Raman columns (PDF p.3); natural anatase single crystal"
+      },
+      "literature_summary": {
+        "n_peaks": 197,
+        "n_papers": 89,
+        "median_cm-1": 396.0,
+        "p10_cm-1": 391.3,
+        "p90_cm-1": 400.0,
+        "min_cm-1": 379.6,
+        "max_cm-1": 409.8
+      }
+    },
+    {
+      "phase": "anatase",
+      "mode": "A1g + B1g(2)",
+      "symmetry": "A1g + B1g",
+      "position_cm-1": 517,
+      "position_uncertainty_cm-1": null,
+      "width_cm-1": 11,
+      "paper_label": "B1g (nu2) / A1g (nu3)",
+      "motion": "two nearly degenerate O-Ti-O antisymmetric bending modes along c; unresolved at room temperature",
+      "source_verified": true,
+      "training_eligible": true,
+      "provenance": {
+        "doi": "10.1103/PhysRevB.86.205201",
+        "url": null,
+        "paper_id": "ANA069",
+        "page": 3,
+        "figure_or_table": "Table I, spontaneous Raman columns (PDF p.3); natural anatase single crystal"
+      },
+      "literature_summary": {
+        "n_peaks": 161,
+        "n_papers": 76,
+        "median_cm-1": 515.1,
+        "p10_cm-1": 511.0,
+        "p90_cm-1": 520.0,
+        "min_cm-1": 494.4,
+        "max_cm-1": 540.0
+      }
+    },
+    {
+      "phase": "anatase",
+      "mode": "A1g",
+      "symmetry": "A1g",
+      "position_cm-1": null,
+      "position_uncertainty_cm-1": null,
+      "width_cm-1": null,
+      "paper_label": null,
+      "motion": "component of the unresolved A1g + B1g(2) band (see notes)",
+      "source_verified": false,
+      "training_eligible": false,
+      "provenance": null,
+      "literature_summary": {
+        "n_peaks": 18,
+        "n_papers": 8,
+        "median_cm-1": 513.5,
+        "p10_cm-1": 506.5,
+        "p90_cm-1": 517.0,
+        "min_cm-1": 504.7,
+        "max_cm-1": 518.3
+      }
+    },
+    {
+      "phase": "anatase",
+      "mode": "B1g(2)",
+      "symmetry": "B1g",
+      "position_cm-1": null,
+      "position_uncertainty_cm-1": null,
+      "width_cm-1": null,
+      "paper_label": null,
+      "motion": "component of the unresolved A1g + B1g(2) band (see notes)",
+      "source_verified": false,
+      "training_eligible": false,
+      "provenance": null,
+      "literature_summary": {
+        "n_peaks": 19,
+        "n_papers": 8,
+        "median_cm-1": 519.0,
+        "p10_cm-1": 511.2,
+        "p90_cm-1": 522.0,
+        "min_cm-1": 508.6,
+        "max_cm-1": 522.0
+      }
+    },
+    {
+      "phase": "anatase",
+      "mode": "Eg(3)",
+      "symmetry": "Eg",
+      "position_cm-1": 638,
+      "position_uncertainty_cm-1": null,
+      "width_cm-1": 11,
+      "paper_label": "Eg (nu1)",
+      "motion": "Ti-O symmetric stretching in the a-b plane",
+      "source_verified": true,
+      "training_eligible": true,
+      "provenance": {
+        "doi": "10.1103/PhysRevB.86.205201",
+        "url": null,
+        "paper_id": "ANA069",
+        "page": 3,
+        "figure_or_table": "Table I, spontaneous Raman columns (PDF p.3); natural anatase single crystal"
+      },
+      "literature_summary": {
+        "n_peaks": 204,
+        "n_papers": 89,
+        "median_cm-1": 638.0,
+        "p10_cm-1": 630.2,
+        "p90_cm-1": 640.5,
+        "min_cm-1": 614.6,
+        "max_cm-1": 656.0
+      }
+    }
+  ],
+  "artifact_lines": {
+    "substrate_raman": [
+      {
+        "material": "Si-I",
+        "position_cm-1": 520.2,
+        "symmetry": "F2g",
+        "role": "substrate/reference",
+        "provenance": {
+          "doi": "10.1103/PhysRev.155.712",
+          "page": 712,
+          "figure_or_table": "abstract (see the team silicon card, repo-root mode_cards/silicon.json)"
+        }
+      }
+    ],
+    "laser_dependent_plasma_or_stray_light": [
+      {
+        "laser_wavelength_nm": 532,
+        "position_cm-1": null,
+        "instrument": "solid-state laser, no plasma lines",
+        "source_verified": true,
+        "training_eligible": false
+      }
+    ]
+  },
+  "modes": [
+    {
+      "mode": "Eg(1)",
+      "symmetry": "Eg",
+      "raman_activity": "active",
+      "training_eligible": true
+    },
+    {
+      "mode": "Eg(2)",
+      "symmetry": "Eg",
+      "raman_activity": "active",
+      "training_eligible": true
+    },
+    {
+      "mode": "B1g(1)",
+      "symmetry": "B1g",
+      "raman_activity": "active",
+      "training_eligible": true
+    },
+    {
+      "mode": "A1g + B1g(2)",
+      "symmetry": "A1g + B1g",
+      "raman_activity": "active",
+      "training_eligible": true
+    },
+    {
+      "mode": "A1g",
+      "symmetry": "A1g",
+      "raman_activity": "active",
+      "training_eligible": false
+    },
+    {
+      "mode": "B1g(2)",
+      "symmetry": "B1g",
+      "raman_activity": "active",
+      "training_eligible": false
+    },
+    {
+      "mode": "Eg(3)",
+      "symmetry": "Eg",
+      "raman_activity": "active",
+      "training_eligible": true
+    }
+  ],
+  "studies": [
+    {
+      "paper_id": "ANA069",
+      "doi": "10.1103/physrevb.86.205201",
+      "citation": "Ishioka, Kunie et al., Physical Review B (2012). Raman generation of coherent phonons of anatase and rutile TiO2 photoexcited at fundamental absorption edges",
+      "source": "https://www.nims.go.jp/ldynamics/eprints/PhysRevB.86.205201.pdf",
+      "source_verified": true,
+      "sample": {
+        "phase": "anatase",
+        "orientation": null,
+        "confounders": [
+          "doping"
+        ]
+      },
+      "conditions": {
+        "laser_wavelength_nm": 532,
+        "laser_power_mw": null,
+        "temperature": null,
+        "room_temperature_confirmed": null,
+        "wavenumber_calibration": null,
+        "instrument_resolution_cm-1": null,
+        "substrate": null
+      },
+      "spectra": [
+        {
+          "sample_id": "S532",
+          "sample_description": "(101)-oriented natural anatase single crystal (SurfaceNet), as received",
+          "peaks": [
+            {
+              "position_cm-1": 145,
+              "position_uncertainty_cm-1": null,
+              "height": null,
+              "height_units": null,
+              "fwhm_cm-1": 10,
+              "mode": "Eg(1)",
+              "symmetry": "Eg",
+              "raman_activity": "active",
+              "phase": "anatase",
+              "training_eligible": true,
+              "value_type": "reported",
+              "assignment_source": "paper",
+              "provenance": {
+                "page": 3,
+                "figure_or_table": "Table I (Raman columns), PDF p.3"
+              }
+            },
+            {
+              "position_cm-1": 199,
+              "position_uncertainty_cm-1": null,
+              "height": null,
+              "height_units": null,
+              "fwhm_cm-1": 4,
+              "mode": "Eg(2)",
+              "symmetry": "Eg",
+              "raman_activity": "active",
+              "phase": "anatase",
+              "training_eligible": true,
+              "value_type": "reported",
+              "assignment_source": "paper",
+              "provenance": {
+                "page": 3,
+                "figure_or_table": "Table I (Raman columns), PDF p.3"
+              }
+            },
+            {
+              "position_cm-1": 396,
+              "position_uncertainty_cm-1": null,
+              "height": null,
+              "height_units": null,
+              "fwhm_cm-1": 20,
+              "mode": "B1g(1)",
+              "symmetry": "B1g",
+              "raman_activity": "active",
+              "phase": "anatase",
+              "training_eligible": true,
+              "value_type": "reported",
+              "assignment_source": "paper",
+              "provenance": {
+                "page": 3,
+                "figure_or_table": "Table I (Raman columns), PDF p.3"
+              }
+            },
+            {
+              "position_cm-1": 517,
+              "position_uncertainty_cm-1": null,
+              "height": null,
+              "height_units": null,
+              "fwhm_cm-1": 22,
+              "mode": "A1g + B1g(2)",
+              "symmetry": "A1g + B1g",
+              "raman_activity": "active",
+              "phase": "anatase",
+              "training_eligible": true,
+              "value_type": "reported",
+              "assignment_source": "paper",
+              "provenance": {
+                "page": 3,
+                "figure_or_table": "Table I (Raman columns), PDF p.3"
+              }
+            },
+            {
+              "position_cm-1": 638,
+              "position_uncertainty_cm-1": null,
+              "height": null,
+              "height_units": null,
+              "fwhm_cm-1": 22,
+              "mode": "Eg(3)",
+              "symmetry": "Eg",
+              "raman_activity": "active",
+              "phase": "anatase",
+              "training_eligible": true,
+              "value_type": "reported",
+              "assignment_source": "paper",
+              "provenance": {
+                "page": 3,
+                "figure_or_table": "Table I (Raman columns), PDF p.3"
+              }
+            }
+          ]
+        }
+      ],
+      "training_eligible": true
+    }
+  ],
+  "cross_paper_summary": {
+    "agreement": [
+      "A1g: 18 peaks from 8 papers, median 513.5 cm-1 (10-90% range 506.5-517.0)",
+      "A1g + B1g(2): 161 peaks from 76 papers, median 515.1 cm-1 (10-90% range 511.0-520.0)",
+      "B1g(1): 197 peaks from 89 papers, median 396.0 cm-1 (10-90% range 391.3-400.0)",
+      "B1g(2): 19 peaks from 8 papers, median 519.0 cm-1 (10-90% range 511.2-522.0)",
+      "Eg(1): 509 peaks from 95 papers, median 144.9 cm-1 (10-90% range 141.8-151.0)",
+      "Eg(2): 124 peaks from 63 papers, median 197.0 cm-1 (10-90% range 194.4-200.9)",
+      "Eg(3): 204 peaks from 89 papers, median 638.0 cm-1 (10-90% range 630.2-640.5)"
+    ],
+    "conflicts": [
+      "Order of the A1g/B1g(2) pair near 513/519 is disputed: Ohsaka 1978 puts A1g lower (used as this dataset's labelling convention); polarized single-crystal work (Giarola 2010, ANA068) puts A1g higher. Paper labels are kept in notes.",
+      "ANA034 reports every mode 8-13 cm-1 below the usual positions; ANA080 and ANA097 are 3-7 cm-1 low (copied as printed).",
+      "ANA032 deposited furnace spectra read 3-10 cm-1 low (calibration).",
+      "ANA005 re-analyses literature data that overlap ANA001 (flagged 'same data as')."
+    ],
+    "missing": [
+      "ANA088 has no spontaneous-Raman peaks (only 2D-correlation values) and needs a replacement paper.",
+      "No open-access in situ high-pressure or 18O-isotope anatase Raman paper was found (APS/ACS/RSC paywalls).",
+      "Round-2 papers (ANA034-ANA100) have extractor self-checks but no independent review sample yet."
+    ]
+  },
+  "confounders": [
+    "crystallite size (phonon confinement: Eg(1) shifts up and broadens)",
+    "doping and oxygen vacancies",
+    "temperature",
+    "rutile/brookite mixtures",
+    "Si substrate line at 520.7 on the 513-519 doublet",
+    "laser heating",
+    "spectrometer calibration offsets"
+  ],
+  "dataset_notes": [
+    "Simplified card: one study, the most trusted paper (the checked primary source of curated_expected_modes). The comprehensive card with every paper (99 studies) is Qiaomu/mode_cards_comprehensive/anatase_comprehensive.json.",
+    "literature_summary in each curated mode is computed over all papers in the full card.",
+    "curated_expected_modes come from one primary paper (Ishioka, K. et al. (2012) Raman generation of coherent phonons of anatase and rutile TiO2 photoexcited at fundamental absorption edges. Physical Review B 86, 205201.), checked number by number (Qiaomu/data/mode_card_sources/CHECK.md); human teammate sign-off pending."
+  ]
+}

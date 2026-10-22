@@ -1,0 +1,297 @@
+{
+  "material": "quartz",
+  "formula": "SiO2 (alpha-quartz)",
+  "point_group": "D3",
+  "point_group_status": "NOT stated in the paper's text; D3 is standard for alpha-quartz. Confirm with spglib on a quartz CIF.",
+  "citation": {
+    "primary": "Zicovich-Wilson, C. M.; Pascale, F.; Roetti, C.; Saunders, V. R.; Orlando, R.; Dovesi, R. Calculation of the vibration frequencies of alpha-quartz: The effect of Hamiltonian and basis set. J. Comput. Chem. 2004, 25(15), 1873-1881. DOI 10.1002/jcc.20120",
+    "experimental_source_cited_in_paper": "Gervais, F.; Piriou, B. Phys. Rev. B 1975, 11, 3944 (paper's ref. 33)",
+    "table_used": "Table 7 (Exp. column, TO and LO) and Table 9 (B3LYP, 2d basis)"
+  },
+  "position_note": "position_cm1 is the paper's experimental frequency at Gamma (Table 7, Exp. column); calc_b3lyp_cm1 is the paper's B3LYP/2d value (Table 9). branch is TO or LO. A1 has no LO branch listed in the paper. LO values were added for E and A2 only. Experimental values come from Gervais & Piriou 1975, not a direct Raman measurement; compare with RRUFF peaks before setting checker tolerances.",
+  "modes": [
+    {
+      "id": "A1_1_TO",
+      "symmetry": "A1",
+      "degeneracy": 1,
+      "position_cm1": 219.0,
+      "calc_b3lyp_cm1": 216.0,
+      "motion": null,
+      "raman_active": true,
+      "branch": "TO"
+    },
+    {
+      "id": "A1_2_TO",
+      "symmetry": "A1",
+      "degeneracy": 1,
+      "position_cm1": 358.0,
+      "calc_b3lyp_cm1": 350.4,
+      "motion": null,
+      "raman_active": true,
+      "branch": "TO"
+    },
+    {
+      "id": "A1_3_TO",
+      "symmetry": "A1",
+      "degeneracy": 1,
+      "position_cm1": 469.0,
+      "calc_b3lyp_cm1": 465.1,
+      "motion": null,
+      "raman_active": true,
+      "branch": "TO"
+    },
+    {
+      "id": "A1_4_TO",
+      "symmetry": "A1",
+      "degeneracy": 1,
+      "position_cm1": 1082.0,
+      "calc_b3lyp_cm1": 1085.4,
+      "motion": null,
+      "raman_active": true,
+      "branch": "TO"
+    },
+    {
+      "id": "E_1_TO",
+      "symmetry": "E",
+      "degeneracy": 2,
+      "position_cm1": 133.0,
+      "calc_b3lyp_cm1": 132.5,
+      "motion": null,
+      "raman_active": true,
+      "branch": "TO"
+    },
+    {
+      "id": "E_2_TO",
+      "symmetry": "E",
+      "degeneracy": 2,
+      "position_cm1": 269.0,
+      "calc_b3lyp_cm1": 263.6,
+      "motion": null,
+      "raman_active": true,
+      "branch": "TO"
+    },
+    {
+      "id": "E_3_TO",
+      "symmetry": "E",
+      "degeneracy": 2,
+      "position_cm1": 393.5,
+      "calc_b3lyp_cm1": 391.3,
+      "motion": null,
+      "raman_active": true,
+      "branch": "TO"
+    },
+    {
+      "id": "E_4_TO",
+      "symmetry": "E",
+      "degeneracy": 2,
+      "position_cm1": 452.5,
+      "calc_b3lyp_cm1": 447.0,
+      "motion": null,
+      "raman_active": true,
+      "branch": "TO"
+    },
+    {
+      "id": "E_5_TO",
+      "symmetry": "E",
+      "degeneracy": 2,
+      "position_cm1": 698.0,
+      "calc_b3lyp_cm1": 702.9,
+      "motion": null,
+      "raman_active": true,
+      "branch": "TO"
+    },
+    {
+      "id": "E_6_TO",
+      "symmetry": "E",
+      "degeneracy": 2,
+      "position_cm1": 799.0,
+      "calc_b3lyp_cm1": 810.5,
+      "motion": null,
+      "raman_active": true,
+      "branch": "TO"
+    },
+    {
+      "id": "E_7_TO",
+      "symmetry": "E",
+      "degeneracy": 2,
+      "position_cm1": 1066.0,
+      "calc_b3lyp_cm1": 1068.2,
+      "motion": null,
+      "raman_active": true,
+      "branch": "TO"
+    },
+    {
+      "id": "E_8_TO",
+      "symmetry": "E",
+      "degeneracy": 2,
+      "position_cm1": 1158.0,
+      "calc_b3lyp_cm1": 1163.1,
+      "motion": null,
+      "raman_active": true,
+      "branch": "TO"
+    },
+    {
+      "id": "E_1_LO",
+      "symmetry": "E",
+      "branch": "LO",
+      "degeneracy": 2,
+      "position_cm1": 133.0,
+      "calc_b3lyp_cm1": 132.6,
+      "motion": null,
+      "raman_active": true
+    },
+    {
+      "id": "E_2_LO",
+      "symmetry": "E",
+      "branch": "LO",
+      "degeneracy": 2,
+      "position_cm1": 269.0,
+      "calc_b3lyp_cm1": 265.5,
+      "motion": null,
+      "raman_active": true
+    },
+    {
+      "id": "E_3_LO",
+      "symmetry": "E",
+      "branch": "LO",
+      "degeneracy": 2,
+      "position_cm1": 402.0,
+      "calc_b3lyp_cm1": 400.0,
+      "motion": null,
+      "raman_active": true
+    },
+    {
+      "id": "E_4_LO",
+      "symmetry": "E",
+      "branch": "LO",
+      "degeneracy": 2,
+      "position_cm1": 512.0,
+      "calc_b3lyp_cm1": 508.0,
+      "motion": null,
+      "raman_active": true
+    },
+    {
+      "id": "E_5_LO",
+      "symmetry": "E",
+      "branch": "LO",
+      "degeneracy": 2,
+      "position_cm1": 701.0,
+      "calc_b3lyp_cm1": 705.7,
+      "motion": null,
+      "raman_active": true
+    },
+    {
+      "id": "E_6_LO",
+      "symmetry": "E",
+      "branch": "LO",
+      "degeneracy": 2,
+      "position_cm1": 811.5,
+      "calc_b3lyp_cm1": 822.8,
+      "motion": null,
+      "raman_active": true
+    },
+    {
+      "id": "E_7_LO",
+      "symmetry": "E",
+      "branch": "LO",
+      "degeneracy": 2,
+      "position_cm1": 1155.0,
+      "calc_b3lyp_cm1": 1160.2,
+      "motion": null,
+      "raman_active": true
+    },
+    {
+      "id": "E_8_LO",
+      "symmetry": "E",
+      "branch": "LO",
+      "degeneracy": 2,
+      "position_cm1": 1227.0,
+      "calc_b3lyp_cm1": 1243.3,
+      "motion": null,
+      "raman_active": true
+    }
+  ],
+  "motion_note": "The paper reports frequencies only and does not describe atomic motions. Fill each 'motion' line from a second source (e.g. a quartz Raman assignment paper) and add that citation.",
+  "silent_modes": [
+    {
+      "id": "A2_1_TO",
+      "symmetry": "A2",
+      "position_cm1": 361.3,
+      "reason": "A2 is infrared-only in D3, Raman-silent",
+      "branch": "TO"
+    },
+    {
+      "id": "A2_2_TO",
+      "symmetry": "A2",
+      "position_cm1": 499.0,
+      "reason": "A2 is infrared-only in D3, Raman-silent",
+      "branch": "TO"
+    },
+    {
+      "id": "A2_3_TO",
+      "symmetry": "A2",
+      "position_cm1": 778.0,
+      "reason": "A2 is infrared-only in D3, Raman-silent",
+      "branch": "TO"
+    },
+    {
+      "id": "A2_4_TO",
+      "symmetry": "A2",
+      "position_cm1": 1072.0,
+      "reason": "A2 is infrared-only in D3, Raman-silent",
+      "branch": "TO"
+    },
+    {
+      "id": "A2_1_LO",
+      "symmetry": "A2",
+      "branch": "LO",
+      "position_cm1": 385.0,
+      "calc_b3lyp_cm1": 377.1,
+      "reason": "A2 is infrared-only in D3, Raman-silent"
+    },
+    {
+      "id": "A2_2_LO",
+      "symmetry": "A2",
+      "branch": "LO",
+      "position_cm1": 553.0,
+      "calc_b3lyp_cm1": 555.9,
+      "reason": "A2 is infrared-only in D3, Raman-silent"
+    },
+    {
+      "id": "A2_3_LO",
+      "symmetry": "A2",
+      "branch": "LO",
+      "position_cm1": 791.0,
+      "calc_b3lyp_cm1": 797.1,
+      "reason": "A2 is infrared-only in D3, Raman-silent"
+    },
+    {
+      "id": "A2_4_LO",
+      "symmetry": "A2",
+      "branch": "LO",
+      "position_cm1": 1230.0,
+      "calc_b3lyp_cm1": 1252.1,
+      "reason": "A2 is infrared-only in D3, Raman-silent"
+    }
+  ],
+  "instrument_lines": [
+    {
+      "name": "silicon substrate",
+      "position_cm1": 521,
+      "label": "artifact",
+      "source": "silicon card, not this paper"
+    },
+    {
+      "name": "laser plasma lines",
+      "positions_cm1": [],
+      "label": "artifact",
+      "source": "fill per laser wavelength"
+    }
+  ],
+  "to_verify": [
+    "point_group D3 (spglib on CIF)",
+    "motion descriptions (second source needed)",
+    "A1/E Raman-active and A2 silent assignment against a Raman-specific source",
+    "teammate check of every number against Tables 7 and 9"
+  ]
+}
